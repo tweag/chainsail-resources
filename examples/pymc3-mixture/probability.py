@@ -13,20 +13,21 @@ class PyMC3GaussianMixture(object):
         self.weights = weights
 
         def sigma_to_cov(sigma):
-            return np.array([[1 / sigma ** 2, 0], [0, 1 / sigma ** 2]])
+            return np.array([[sigma ** 2, 0], [0, sigma ** 2]])
 
         with pm.Model() as model:
             components = [pm.MvNormal.dist(mu=mu, cov=sigma_to_cov(sigma))
                           for mu, sigma in zip(means, sigmas)]
             pm.Mixture("coords", w=weights, comp_dists=components, shape=(2,))
 
-        self.model = model
+        self.logp_dlogp_function = model.logp_dlogp_function()
+        self.logp_dlogp_function.set_extra_values({})
 
     def log_prob(self, x):
-        return self.model.logp(x)
+        return self.logp_dlogp_function(x)[0]
 
     def log_prob_gradient(self, x):
-        return self.model.dlogp_array(x)
+        return self.logp_dlogp_function(x)[1]
 
 
 means = np.array([[-1.0, -2.0], [1.0, 1.0], [3.0, 2.0], [2.0, -2.0]])
