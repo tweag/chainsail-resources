@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "chainsail-utils"
+name = "chainsail_utils"
 version = "0.1.0"
-description = "Probability distribution interfaces and utils for the Chainsail sampling service"
+description = "Probability distribution interfaces, examples, and utilities for the Chainsail sampling service"
 authors = ["Simeon Carstens <simeon.carstens@tweag.io>"]
 packages = [ { include = 'chainsail_utils' } ]
 
