@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "chainsail-utils"
+version = "0.1.0"
+description = "Probability distribution interfaces and utils for the Chainsail sampling service"
+authors = ["Simeon Carstens <simeon.carstens@tweag.io>"]
+packages = [ { include = 'chainsail_utils' } ]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.21.2"
+pymc3 = "^3.11.4"
+requests = "^2.26.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.9b0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
