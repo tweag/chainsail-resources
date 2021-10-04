@@ -11,10 +11,10 @@ keywords = ['probabilistic programming', 'sampling', 'MCMC']
 packages = [ { include = 'chainsail_utils' } ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8,<3.11"
 numpy = "^1.21.2"
-pymc3 = { version = "^3.11.4", optional = True }
-requests = { version = "^2.26.0", optional = True }
+pymc3 = { version = "^3.11.4", optional = true }
+requests = { version = "^2.26.0", optional = true }
 
 [tool.poetry.dev-dependencies]
 black = "^21.9b0"

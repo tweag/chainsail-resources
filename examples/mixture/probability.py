@@ -3,7 +3,7 @@ Example probability density for consumption by Chainsail
 """
 
 # you can use any pip-installable Python module you like,
-# as long as it hasn't any non-standard system dependencies.
+# as long as it hasn't any non-standard system dependencies
 # Just make sure to add it to the list of dependencies
 # in the job sumission form
 import numpy as np
