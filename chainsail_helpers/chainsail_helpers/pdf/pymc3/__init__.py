@@ -2,7 +2,7 @@
 Interfaces for Chainsail probability densities defined by a PyMC3 model
 """
 
-from chainsail_utils.pdf import PDF
+from chainsail_helpers.pdf import PDF
 
 
 class PyMC3PDF(PDF):

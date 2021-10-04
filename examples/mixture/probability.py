@@ -9,7 +9,7 @@ Example probability density for consumption by Chainsail
 import numpy as np
 from scipy.special import logsumexp, softmax
 
-from chainsail_utils.pdf import PDF
+from chainsail_helpers.pdf import PDF
 
 
 def log_gaussian(x, mu, sigma):

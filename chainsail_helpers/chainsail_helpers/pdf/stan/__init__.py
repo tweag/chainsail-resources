@@ -5,7 +5,7 @@ Interfaces for Chainsail probability densities defined by a Stan model
 import numpy as np
 import requests
 
-from chainsail_utils.pdf import PDF
+from chainsail_helpers.pdf import PDF
 
 
 class StanPDF(PDF):

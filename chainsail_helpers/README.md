@@ -21,4 +21,4 @@ Contributions, for example PDF implementations for other probabilistic programmi
 Just open a pull request and we'll be happy to work with you to make Chainsail even more useful.
 
 ## License
-&copy; 2021 [Tweag](https://tweag.io). `chainsail_utils` is open-source software and licensed under the [MIT license](https://opensource.org/licenses/MIT).
+&copy; 2021 [Tweag](https://tweag.io). `chainsail_helpers` is open-source software and licensed under the [MIT license](https://opensource.org/licenses/MIT).
