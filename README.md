@@ -38,7 +38,7 @@ Also make sure to add all Python dependencies your `probability.py` module requi
 Once you click on "Submit job", you will be redirected to a table listing all your sampling jobs. Start your new job by clicking the corresponding button in your job's row. 
 You can now monitor the progress of your job in the dashboard, which shows two basic statistics to assess convergence and whether the schedule optimization works. 
 Once your job is finished, the dashboard and the job table will display a link to a `.zip` file containing all your sampling results.
-Once downloaded and extracted, you can use a little [postprocessing script](./postprocessing/concatenate_samples.py) to stitch together batches of samples into one big `numpy` array.
+Once downloaded and extracted, you can use a little [postprocessing script](./chainsail_helpers/scripts/concatenate_samples.py) to stitch together batches of samples into one big `numpy` array.
 
 And finally, don't forget to send us your [feedback](mailto:simeon.carstens@tweag.io) :-)
 
