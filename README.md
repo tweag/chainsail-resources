@@ -12,19 +12,19 @@ If you have any questions, don't hesitate to [shoot us a message](mailto:support
 -1. sign up on the [Chainsail website](https://chainsail.io) by clicking the "Login" button or directly [this link](https://resaas-simeon-dev.ey.r.appspot.com/login)
 0. [write us an email] so we can authorize your account to use the computing resources
 1. implement the probability distribution you want to sample. The [`chainsail-helpers` package](./chainsail_helpers/README.md) provides the abstract interface (in [`chainsail_helpers.pdf`](./chainsail_helpers/chainsail_helpers/pdf/__init__.py). You have three options:
-  - code up your probability distribution yourself by subclassing the the abstract interface. In that case, make sure to specify any Python dependencies you might require during the job submission step.
-  - in case you happen to already have your statistical model formulated in [PyMC3](https://docs.pymc.io), you can use the [PyMC3 wrapper](./chainsail_resources/chainsail_resources/pdf/pymc3/__init__.py). An example is provided [here](./examples/pymc3-mixture/probability.py).
-  - if you formulated your model in [Stan](https://mc-stan.org), use the [Stan wrapper](./chainsail_resources/chainsail_resources/pdf/stan/__init__.py) we provide. It talks to a Chainsail-internal [`httpstan`](https://github.com/stan-dev/httpstan) server and might thus be a bit slow.
+   - code up your probability distribution yourself by subclassing the the abstract interface. In that case, make sure to specify any Python dependencies you might require during the job submission step.
+   - in case you happen to already have your statistical model formulated in [PyMC3](https://docs.pymc.io), you can use the [PyMC3 wrapper](./chainsail_resources/chainsail_resources/pdf/pymc3/__init__.py). An example is provided [here](./examples/pymc3-mixture/probability.py).
+   - if you formulated your model in [Stan](https://mc-stan.org), use the [Stan wrapper](./chainsail_resources/chainsail_resources/pdf/stan/__init__.py) we provide. It talks to a Chainsail-internal [`httpstan`](https://github.com/stan-dev/httpstan) server and might thus be a bit slow.
 2. make an instance of your PDF available as an object with name `pdf` in a file called `probability.py` and furthermore provide a flat `numpy` array called `initial_states` in the same file which holds the initial state for the MCMC samplers
 3. test whether your PDF implementation actually works by calling `pdf.log_prob` and `pdf.log_prob_gradient` with your `initial_states` as an argument. We will provide an automated way to easily test this later.
 4. prepare a zip file of your `probability.py` and any other file dependencies your code may have (e.g., data files) and make sure that you don't have subdirectories and that this structure matches how you access these files in your `probability.py`.
 5. upload that zip file to some publicly accessible URL.
 5. create a new sampling job by on the [Chainsail website](https://chainsail.io) by click on "Create new job" and filling out the form. Here's some help for the form fields:
-- Job name: pick any job name you want.
-- Number of production samples: make some kind of estimate of how many samples you want to have produced in the end. Chainsail will produce that number of samples and write out every 5th of these samples.
-- Maximum number of replicas: the higher this number, the better the multimodal sampling will be, but the more computation resources you will burn. Start with the default value of 10 and increase if you suspect that sampling is not correct.
-- Probability definition: enter here the URL to which you uploaded your zipped `probability.py`.
-- Dependencies: using a comma-separated list, enter any PIP-installable Python dependencies your `probability.py` requires.
+   - Job name: pick any job name you want.
+   - Number of production samples: make some kind of estimate of how many samples you want to have produced in the end. Chainsail will produce that number of samples and write out every 5th of these samples.
+   - Maximum number of replicas: the higher this number, the better the multimodal sampling will be, but the more computation resources you will burn. Start with the default value of 10 and increase if you suspect that sampling is not correct.
+   - Probability definition: enter here the URL to which you uploaded your zipped `probability.py`.
+   - Dependencies: using a comma-separated list, enter any PIP-installable Python dependencies your `probability.py` requires.
 If you click on "more parameters", you'll find exactly that - they are [documented elsewhere](./docs/parameters.md).
 Finally, create your job by clicking the "Create job" button.
 6. Start your job by clicking the corresponding button in the job table.
