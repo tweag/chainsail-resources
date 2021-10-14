@@ -26,7 +26,7 @@ class StanPDF(PDF):
             data(dict): observations to condition on
         """
         r = requests.post(
-            f"{self._HTTPSTAN_URL}:{self._port}/v1/models",
+            f"{self._HTTPSTAN_URL}/v1/models",
             json={"program_code": model_code},
         )
         # if the model did not compile successfully, httpstan returns
