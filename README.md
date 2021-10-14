@@ -11,7 +11,7 @@ Check out the walkthrough [here](./documentation/walkthrough.md).
 If you have any questions, don't hesitate to [shoot us a message](mailto:support@chainsail.io)!
 
 ## The algorithms behind Chainsail
-Without spilling too many beans of this currently closed-source project, [here](./documentation/algorithms/README.md) is some background information for if you're interested what algorithms power Chainsail.
+Without spilling too many beans of this currently closed-source project, [here](./documentation/algorithms/) is some background information for if you're interested what algorithms power Chainsail.
 Chainsail implements
 - [Replica Exchange](./documentation/algorithms/replica_exchange.md) to facilitate multimodal sampling,
 - [automated Replica Exchange schedule adaption](./documentation/algorithms/schedule_tuning.md) based on work by Prof. Michael Habeck (see these [two](http://proceedings.mlr.press/v22/habeck12.html) [papers](https://arxiv.org/abs/1504.00053)),
