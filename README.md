@@ -1,5 +1,5 @@
 # Chainsail resources and documentation
-Examples, documentation and other additional resources related to the Chainsail sampling web service [https://chainsail.io].
+Examples, documentation and other additional resources related to the Chainsail sampling web service (https://chainsail.io).
 
 ## Chainsail: a web service to sample multimodal probability distributions
 Chainsail is a web service which helps you sample from multimodal probability distributions.
