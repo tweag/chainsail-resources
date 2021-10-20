@@ -4,7 +4,7 @@ Examples, documentation and other additional resources related to the Chainsail 
 ## Chainsail: a web service to sample multimodal probability distributions
 Chainsail is a web service which helps you sample from multimodal probability distributions.
 In the context of Bayesian statistics, they arise in the case of unidentifiable parameters which are due to some symmetry in the model or if you have ambiguous data.  
-While this early version of Chainsail is targeted towards experienced Markov Chain Monte Carlo (MCMC) practitioners, it is still designed to be user-friendly and in this repository, we provide extensive documentation on how to use Chainsail and the algorithms at work behind the scene.
+While this early version of Chainsail is targeted towards experienced Markov Chain Monte Carlo (MCMC) practitioners, it is still designed to be user-friendly and in this repository, we provide some documentation on how to use Chainsail and the algorithms at work behind the scene.
 
 ## Usage
 Learn how to use Chainsail in only 13 steps :-)
