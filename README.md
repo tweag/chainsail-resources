@@ -13,11 +13,10 @@ Check out the walkthrough [here](./documentation/walkthrough.md).
 If you have any questions, don't hesitate to [shoot us a message](mailto:support@chainsail.io)!
 
 ## The algorithms behind Chainsail
-Without spilling too many beans of this currently closed-source project, [here](./documentation/algorithms/) is some background information for if you're interested what algorithms power Chainsail.
-Chainsail implements
-- [Replica Exchange](./documentation/algorithms/replica_exchange.md) to facilitate multimodal sampling,
-- [automated Replica Exchange schedule adaption](./documentation/algorithms/schedule_tuning.md) based on work by Prof. Michael Habeck (see these [two](http://proceedings.mlr.press/v22/habeck12.html) [papers](https://arxiv.org/abs/1504.00053)),
-- and a currently very simple version of [Hamiltonian Monte Carlo (HMC)](./documentation/algorithms/hmc.md).
+Chainsail implements several important algorithms, which we describe here in not too much detail:
+- [Replica Exchange](./documentation/algorithms/replica_exchange.md): Chainsail's main ingredient that allows you to sample multimodal probability distributions
+- [Automatic Replica Exchange tuning](./documentation/algorithms/schedule_tuning.md): Replica Exchange requires setting a kind of "temperature" schedule, which Chainsail automatically determines for you
+- [Hamiltonian Monte Carlo](./documentation/algorithms/hmc.md): While Replica Exchange takes care of _global_ sampling, meaning it helps to discover all modes of your probability distribution, _local_ sampling algorithms like Hamiltonian Monte Carlo sample well within a single mode. Chainsail currently only implements a very simple form of Hamiltonian Monte Carlo.
 
 ## The `chainsail_helpers` package
 This repository also contains the source code for the [`chainsail_helpers`](./chainsail_helpers/) package.

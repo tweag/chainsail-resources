@@ -1,7 +1,7 @@
 # How to use Chainsail
 
 1. sign up on the [Chainsail website](https://chainsail.io) by clicking the "Login" button or directly [this link](https://resaas-simeon-dev.ey.r.appspot.com/login)
-2. [write us an email] so we can authorize your account to use the computing resources
+2. [write us an email](mailto:support@chainsail.io) so we can authorize your account to use the computing resources
 3. implement the probability distribution you want to sample. The [`chainsail-helpers` package](./chainsail_helpers/README.md) provides the abstract interface (in [`chainsail_helpers.pdf`](./chainsail_helpers/chainsail_helpers/pdf/__init__.py). You have three options:
    - code up your probability distribution yourself by subclassing the abstract interface. In that case, make sure to specify any Python dependencies you might require during the job submission step.
    - in case you happen to already have your statistical model formulated in [PyMC3](https://docs.pymc.io), you can use the [PyMC3 wrapper](./chainsail_helpers/chainsail_helpers/pdf/pymc3/__init__.py). An example is provided [here](./examples/pymc3-mixture/probability.py).
