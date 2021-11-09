@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "chainsail-helpers"
-version = "0.1.0"
+version = "0.1.1"
 description = "Probability distribution interfaces, examples, and utilities for the Chainsail sampling service"
 authors = ["Simeon Carstens <simeon.carstens@tweag.io>"]
 license = "MIT"
@@ -9,6 +9,9 @@ repository = 'https://github.com/tweag/chainsail-resources'
 homepage = 'https://github.com/tweag/chainsail-resources'
 keywords = ['probabilistic programming', 'sampling', 'MCMC']
 packages = [ { include = 'chainsail_helpers' } ]
+
+[tool.poetry.scripts]
+concatenate-samples = 'chainsail_helpers.scripts.concatenate_samples:main'
 
 [tool.poetry.dependencies]
 python = "^3.8,<3.11"
