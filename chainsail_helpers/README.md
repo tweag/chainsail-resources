@@ -6,15 +6,17 @@ This small package complements the [Chainsail](https://chainsail.io) sampling se
 - and contains a few helper scripts for post-processing.
 
 ## Installation
-This package requires a few Python dependencies.
-Best use [Poetry](https://python-poetry.org) to install them and develop your own probability density implementation: run
+```bash
+$ pip install chainsail-helpers
+```
+If you'd like implement a probability density using [Stan](https://mc-stan.org) or [PyMC3](https://docs.pymc.io), install the corresponding extra dependencies like so: `poetry install --extras pymc3` and similarly for `stan`. 
+When using Chainsail, this package will be automatically installed, so no need to add it to the list of dependencies in the job submission form.
+If you like to develop this package, best use [Poetry](https://python-poetry.org):
 ```bash
 $ poetry install
 $ poetry shell
 ```
-and you will be dropped into a virtual environment with these dependencies installed.
-If you'd like implement a probability density using [Stan](https://mc-stan.org) or [PyMC3](https://docs.pymc.io), install the corresponding extra dependencies like so: `poetry install --extras pymc3` and similarly for `stan`. 
-When using Chainsail, this package will be automatically installed, so no need to add it to the list of dependencies in the job submission form.
+and you will be dropped into a virtual environment with all dependencies installed.
 
 ## Contributing
 Contributions, for example PDF implementations for other probabilistic programming languages, are highly welcome!
