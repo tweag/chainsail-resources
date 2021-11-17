@@ -7,9 +7,7 @@ In the context of Bayesian statistics, they arise in the case of unidentifiable 
 While this early version of Chainsail is targeted towards experienced Markov Chain Monte Carlo (MCMC) practitioners, it is still designed to be user-friendly and in this repository, we provide some documentation on how to use Chainsail and the algorithms at work behind the scene.
 
 ## Usage
-Learn how to use Chainsail in only 13 steps :-)
-Don't worry, it's not as complicated as it sounds.
-Check out the walkthrough [here](./documentation/walkthrough.md).
+Learn how to use Chainsail by checking out the walkthrough [here](./documentation/walkthrough.md).
 If you have any questions, don't hesitate to [shoot us a message](mailto:support@chainsail.io)!
 
 ## The algorithms behind Chainsail
