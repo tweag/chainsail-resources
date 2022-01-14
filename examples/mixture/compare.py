@@ -1,3 +1,7 @@
+'''
+Compares results of running a single Markov chain to results obtained from
+Chainsail.
+'''
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,11 +11,11 @@ from plots import plot_true_distribution, plot_samples_histogram
 parser = argparse.ArgumentParser(
     description="Compare single chain and Chainsail sampling results for a 2D mixture model"
 )
-parser.add_argument("--sc_samples", type=str, default="sc_samples.npy", help="Results of single chain sampling (via single_chain.py)")
+parser.add_argument("sc_samples", type=str,
+                    help="Results of single chain sampling (via single_chain.py)")
 parser.add_argument(
-    "--chainsail_samples",
+    "chainsail_samples",
     type=str,
-    default="chainsail_samples.npy",
     help='Results of chainsail sampling (via ../../postprocessing/concatenate_samples.py)',
 )
 args = parser.parse_args()
