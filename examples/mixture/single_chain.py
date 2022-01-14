@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from probability import pdf, initial_states
 from plots import plot_true_distribution, plot_samples_histogram
 
-this_dir = os.path.dirname( __file__ )
+this_dir = os.path.dirname(__file__)
 up_dir = os.path.abspath(os.path.join(this_dir, '..'))
 sys.path.append(up_dir)
 from rwmc import RWMCSampler
