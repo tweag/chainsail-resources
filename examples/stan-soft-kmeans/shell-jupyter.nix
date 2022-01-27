@@ -1,10 +1,10 @@
 let
-  # jupyter = import (builtins.fetchGit {
-  #   url = https://github.com/tweag/jupyterWith;
-  #   rev = "5f68e85ec95f3169a9613c0e8d4d4d7edf2bb27a";
-  # }) {};
+  jupyter = import (builtins.fetchGit {
+    url = https://github.com/tweag/jupyterWith;
+    rev = "afea17cd4b8fe417cb6b83dc240dec02a7d1d92c";
+  }) {};
   
-  jupyter = import /home/etienne/work/jupyterWith/my-fork/jupyterWith {};
+  # jupyter = import /home/etienne/work/jupyterWith/my-fork/jupyterWith {};
 
   irkernel = jupyter.kernels.iRWith {
     name = "R";
