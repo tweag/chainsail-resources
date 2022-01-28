@@ -2,23 +2,20 @@ import sys
 
 import numpy as np
 
-spacing = 2.0
-sigma = 0.5
-sl = 2
+spacing = 3.0
+sigma = 0.75
+sl = 3
 n_dim = 2
 
 cov = np.eye(n_dim) * sigma * sigma
 n_data = 200
 data_points = []
-n_data_points = np.array([50, 150, 150, 50]).reshape(2,2)
-# n_data_points = np.random.choice(np.arange(50,300), size=(sl, sl))
-print(n_data_points)
-for i, mean_x in enumerate(np.arange(0, spacing * sl, spacing)):
-    for j, mean_y in enumerate(np.arange(0, spacing * sl, spacing)):
+for mean_x in np.arange(0, spacing * sl, spacing):
+    for mean_y in np.arange(0, spacing * sl, spacing):
         mean_x += np.random.uniform(-0.5, 0.5)
         mean_y += np.random.uniform(-0.5, 0.5)
         data_points.append(
-            np.random.multivariate_normal((mean_x, mean_y), cov, size=n_data_points[i, j]))
+            np.random.multivariate_normal((mean_x, mean_y), cov, size=np.random.choice(np.arange(n_data - 20, n_data + 20))))
 data_points = np.vstack(data_points)
 print(data_points.shape)
 

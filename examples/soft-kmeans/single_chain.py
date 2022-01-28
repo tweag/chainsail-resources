@@ -9,7 +9,7 @@ from rwmc import RWMCSampler
 from probability import pdf, initial_state
 from plots import plot_data_samples
 
-sampler = RWMCSampler(pdf, initial_state, 0.05)
+sampler = RWMCSampler(pdf, initial_state, 0.2)
 n = pdf.num_clusters
 
 
