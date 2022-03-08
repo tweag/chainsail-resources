@@ -42,11 +42,18 @@ This results in the samples of the means being slightly offset from their expect
 <img alt="sampled means single chain" src="./images/samples_means_sc_initstate-1-0.png" height="400"/>
 
 ### Cluster assignment
-Soft k-means clustering treats the cluster assignments as probability distributions over the clusters. Each point is associated with a log unnormalized probability distribution for each cluster, which is obtained from transformation of the samples. More importantly for this example, these distributions can be summarized, after softmax normalization, as the probability of each point to belong to each of the two cluster. Therefore, the soft k-means clustering can be converted to a "hard" k-means by assigning each point to its cluster of higher probability.
+Soft k-means clustering treats the cluster assignments as probability distributions over the clusters. Each data point is associated with a log unnormalized probability distribution for each cluster, which is obtained from transformation of the samples of the means (called the "soft Z" transformed samples). These soft Z distributions, after softmax normalization, provide the probability of each point to belong to each cluster. The distributions of the soft Z samples for 3 individual data points are shown below (one point located on the left, one in the middle, and one on the right).
+
+<img alt="Soft_z analysis" src="./images/soft-z_samples_sc2.png"/>
+
+The leftward point at `x = -0.687`, shows a distribution of higher soft Z values for the cluster 2, that is clearly distinct for the distribution of soft Z values for cluster 1. Therefore, it can be unequivocally assigned to the cluster 2. Similarly, the rightward point at `x = 2.369` can be unequivocally assigned to cluster 1. However, the middle point at `x = 1.4` displays two distributions of soft Z values that are superimposed. This highlights the fact that this point is in an ambiguous area, and cannot be assigned confidently to any of the two cluster. Note that this uncertainty is not quantified in the traditional "hard" k-means algorithm, whereas it is available here, through these soft Z samples.
+
+This being said, the soft Z distributions can be summarized to their median value, and consequently, the soft k-means clustering can be converted to a "hard" k-means by assigning each point to its cluster of higher median probability.
 
 <img alt="cluster assignment single chain" src="./images/cluster_assignment_sc_initstate-1-0.png" height="400"/>
 
 In this case, because the lower probability mode of the posterior is sampled, the cluster assignment is rather imperfect. The points at the frontier of the 2 clusters (framed in dotted line) were assigned to the left cluster, which is the less probable one.
+
 
 
 ## Chainsail sampling
@@ -62,9 +69,15 @@ The sampled means are shown below. The two higher peaks correspond to the sample
 
 
 ### Cluster assignment
+Similarly, the soft Z samples show bimodal distributions.
+
+<img alt="Soft_z analysis" src="./images/soft-z_samples_chainsail2.png"/>
+
 And finally, the clusters assignments are closer to what would be expected with a hard k-means clustering.
 
 <img alt="cluster assignment chainsail" src="./images/cluster_assignment_chainsail_initstate-1-0.png" height="400"/>
+
+
 
 
 ## Reproduce the example
