@@ -5,7 +5,7 @@ In this example, we simulate a one dimension clustering problem to illustrate a 
 
 
 ## Data generation
-We generated two 1-dimension clusters of points by drawing them from two normal probability distributions:
+We generated two one-dimensional clusters of points by drawing from two normal probability distributions with different means:
 - **Cluster 1:** 80 points, drawn for a normal probability distribution of mean `mu1 = 0` and standard deviation `sigma = 1`
 - **Cluster 2:** 120 points, drawn for a normal probability distribution of mean `mu2 = 1.5` and standard deviation `sigma = 1`
 
