@@ -1,5 +1,5 @@
 # Soft k-means clustering
-Soft k-means, also known as fuzzy clustering, is the probabilistic version of the better knwon k-means clustering.
+[Soft k-means clustering](https://en.wikipedia.org/wiki/Fuzzy_clustering), also known as fuzzy clustering, is the probabilistic version of the better known k-means clustering.
 In this example, we simulate a one dimension clustering problem to illustrate a use-case of Chainsail.
 
 
