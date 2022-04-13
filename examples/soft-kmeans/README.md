@@ -14,15 +14,17 @@ We generated two one-dimensional clusters of points by drawing from two normal p
 
 
 ## Model
-The model used to fit those clusters is a gaussian mixture (inspired from the [Stan example of soft k-means](https://mc-stan.org/docs/2_21/stan-users-guide/soft-k-means.html)).
-It is defined in the file `probability.py`.  
+The model used to fit these data is a Gaussian mixture, inspired by the [Stan example of soft k-means](https://mc-stan.org/docs/2_21/stan-users-guide/soft-k-means.html).
+We don't discuss the model in detail in this example, but additional precision can be found in the excellent Stan documentation.
+The Chainsail-ready Gaussian mixture implementation of this model is defined in the file [`probability.py`](./probability.py).
+While the code in `probability.py` is general, for this example, we chose the following parameters:
 
 - **Number of mixture components:** Just like in regular "hard" k-means, the users defines the number of clusters to find a priori. There are two clusters to find in this case, so the mixture model was defined with 2 components.
 - **Components weights:** Since the clusters do not contain the same number of points, we set the weights of the mixture components to `w1 = 0.4` and `w2 = 0.6` (which fits the proportion of data points in each cluster).
 - **Parameters to fit:** To keep things simple, only the means of the components were set a variable parameters. The standard deviations were fixed at `sigma = 1` (which fits the data generation model), and components weights were also kept fixed.
-- **Prior parameters:** The prior parameters for both components of the gaussian mixture were arbitrarily set at mean `mu=0` and standard deviation `sigma = 5`.
+- **Prior parameters:** The prior parameters for both components of the gaussian mixture were arbitrarily set at mean `mu = 0` and standard deviation `sigma = 5`.
 
-The log-posterior distribution is visualized below:
+The posterior distribution is visualized below:
 
 <img alt="posterior" src="./images/posterior_1D.png" height="400"/>
 
@@ -34,7 +36,8 @@ This is highlighted by the fact that the top-left mode in the posterior shows a 
 
 
 ## Single MCMC chain sampling
-We created a simple single MCMC chain for sampling this posterior distribution, defined in the module `single_chain.py`.
+We created a simple single MCMC chain for sampling this posterior distribution, defined in the module [`single_chain.py`](./single_chain.py).
+Note that single chain sampling is also what most probabilistic programming libraries provide by default, although in a more advanced manner; they usually give the possibility to mix samples from multiple isolated chains, and provide some sort of initial state estimation for the chain, which makes these algorithms more robust to biaised sampling in practice.
 
 ### Sampling
 With an initial state for the MCMC chain set at (1, 0), the chain gets stuck in the lower probability mode.
@@ -42,10 +45,10 @@ That means that the mixture component with the higher weight (component 2) fits 
 
 <img alt="sampling single chain with initial state = (1, 0)" src="./images/sampling_sc_initstate-1-0.png" height="400"/>
 
-
-This results in the samples of the means being slightly offset from their expected positions (0 and 1.5), as to compensate for the mismatch.
+This results in the samples of the means being slightly offset from their expected positions (0 and 1.5), as to compensate for the mismatch (as shown on the histogram of the sampled means below).
 
 <img alt="sampled means single chain" src="./images/samples_means_sc_initstate-1-0.png" height="400"/>
+
 
 ### Cluster assignment
 Soft k-means clustering treats the cluster assignments as probability distributions over the clusters.
