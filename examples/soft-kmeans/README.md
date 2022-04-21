@@ -35,7 +35,7 @@ This is highlighted by the fact that the top-left mode in the posterior shows a 
 
 
 
-## Single MCMC chain sampling
+## Single MCMC chain
 We created a simple single MCMC chain for sampling this posterior distribution, defined in the module [`single_chain.py`](./single_chain.py).
 Note that single chain sampling is also what most probabilistic programming libraries provide by default, although in a more advanced manner; they usually give the possibility to mix samples from multiple isolated chains, and provide some sort of initial state estimation for the chain, which makes these algorithms more robust to biaised sampling in practice.
 
@@ -74,10 +74,12 @@ The points at the frontier of the 2 clusters (framed in dotted line) were assign
 
 
 
-## Chainsail sampling
+## Chainsail
+Chainsail's replica exchange-based sampling is our answer to multimodal posterior distributions.
+It is less subject to oversampling of some modes and undersampling of others.
+This part analyzes the clustering obtained from sampling the posterior with Chainsail.
 
 ### Sampling
-We now sample the posterior distribution with Chainsail.
 This time, Chainsail's Replica Exchange algorithm allows the main MCMC chain to sample both the low and the high probability mode instead of getting stuck in one of them.
 
 <img alt="sampling chainsail with initial state = (1, 0)" src="./images/sampling_chainsail_initstate-1-0.png" height="400"/>
