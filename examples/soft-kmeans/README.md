@@ -84,7 +84,9 @@ This time, Chainsail's Replica Exchange algorithm allows the main MCMC chain to 
 
 The sampled means are shown below.
 The two higher peaks correspond to the samples from the higher posterior probability mode, and the lower peaks to samples from the lower one.
-Similarly to the samples from the single chain, the means sampled from the lower posterior mode are offset from their expected position, but more importantly, samples from the higher posterior mode match the theoretical cluster centroids much better.
+Similarly to the samples from the single chain, the means sampled from the lower posterior mode are offset from their expected position, due to the mismatch between the number of points in the cluster and the weight of the Gaussian mixture component (low-weight component fitting the cluster with higher number of points, and vice versa).
+But on the other hand, samples from the higher posterior mode match the theoretical cluster centroids much better, since in this case, the higher weight component of the Gaussian mixture is fitted to the cluster with the higher number of points, and vice versa (hence no mismatch that bias the estimation of the theoretical means)
+
 
 <img alt="sampled means chainsail" src="./images/samples_means_chainsail_initstate-1-0.png" height="400"/>
 
