@@ -92,7 +92,7 @@ But on the other hand, samples from the higher posterior mode match the theoreti
 
 
 ### Cluster assignment
-Similarly, the soft Z samples show bimodal distributions.
+Similarly, the soft Z samples show bimodal distributions. Therefore, with Chainsail, we capture the fact that there is a certain probability distribution for *both* component 1 and 2 to have generated each data point. This is absent in the soft Z histograms for the single chain, and thus single-chain sampling made us miss out on important information.
 
 <img alt="Soft_z analysis" src="./images/soft-z_samples_chainsail2.png"/>
 
