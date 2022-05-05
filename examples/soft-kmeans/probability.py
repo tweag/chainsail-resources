@@ -69,7 +69,7 @@ class Pdf:
 # n_dim = 1
 pdf = Pdf(
     prior_sigma=5,
-    prior_mean=np.array([[0], [0]]),
+    prior_mean=np.array([[1], [1]]),
     weights=[80, 120],
     data=data,
 )

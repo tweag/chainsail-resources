@@ -22,7 +22,7 @@ While the code in `probability.py` is general, for this example, we chose the fo
 - **Number of mixture components:** Just like in regular "hard" k-means, the users defines the number of clusters to find a priori. There are two clusters to find in this case, so the mixture model was defined with 2 components.
 - **Components weights:** Since the clusters do not contain the same number of points, we set the weights of the mixture components to `w1 = 0.4` and `w2 = 0.6` (which fits the proportion of data points in each cluster).
 - **Parameters to fit:** To keep things simple, only the means of the components were set a variable parameters. The standard deviations were fixed at `sigma = 1` (which fits the data generation model), and components weights were also kept fixed.
-- **Prior parameters:** The prior parameters for both components of the gaussian mixture were arbitrarily set at mean `mu = 0` and standard deviation `sigma = 5`.
+- **Prior parameters:** The prior parameters for both components of the gaussian mixture were arbitrarily set at mean `mu = 1` and standard deviation `sigma = 5`.
 
 The posterior distribution is visualized below:
 
