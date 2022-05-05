@@ -5,7 +5,7 @@ K-means algorithms are usually involved in a range of different tasks, like expl
 Although clustering is particularly powerful on high dimensional datasets (as it allows to define clusters that could difficultly be inferred by a human), in this example, we simulate an abstract clustering problem in one dimension only, for simpler visualization.
 
 This example aims to illustrate a use case of Chainsail.
-Indeed, the soft k-means model used here exhibits multimodality in the posterior distribution.
+The soft k-means model used here exhibits multimodality in the posterior distribution.
 And whereas single-chain MCMC algorithms notoriously struggle to correctly sample such posteriors, Chainsail aspires to perform better on this particular task.
 
 
