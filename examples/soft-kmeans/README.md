@@ -60,7 +60,7 @@ This results in the samples of the means being slightly offset from their expect
 Soft k-means clustering treats the cluster assignments as probability distributions over the clusters.
 Each data point is associated with a log unnormalized probability distribution for each cluster, which is obtained from transformation of the samples of the means (called the "soft Z" transformed samples).
 These soft Z distributions, after softmax normalization, provide the probability of each point to belong to each cluster.
-In his book *Pattern Recognition and Machine Learning*, *Christopher M. Bishop* also calls this probability the **responsibility** that a component takes for explaining an observation *X* (chapter 9.2, page 432).
+In his book *Pattern Recognition and Machine Learning*, Christopher M. Bishop also calls this probability the **responsibility** that a component takes for explaining an observation *X* (chapter 9.2, page 432).
 We will adopt this name in the rest of this example.
 The responsibilities for 3 individual data points are shown below (one point located on the left, one in the middle, and one on the right).
 
@@ -120,7 +120,7 @@ And while the posterior distribution is clearly visible in this 1D case, most re
 We recently released our first public version of the service, which you can read about more in our [annoucement blog post](https://www.tweag.io/blog/)[Change the link to the announcement blog post].
 We also wrote a series of blog posts about MCMC sampling algorithms, the fourth and last of which describes the core algorithm of Chainsail itself, [Replica Exchange](https://www.tweag.io/blog/2020-10-28-mcmc-intro-4/).
 
-Finally, to know more about soft k-means and gaussian mixture, we again recommend the chapter 9 of *Christopher M. Bishop*'s book *Pattern Recognition and Machine Learning*, and the [Stan documentation](https://mc-stan.org/docs/2_21/stan-users-guide/soft-k-means.html), that is also full of other similar or more advanced example models.
+Finally, to know more about soft k-means and gaussian mixture, we again recommend the chapter 9 of Christopher M. Bishop's book *Pattern Recognition and Machine Learning*, and the [Stan documentation](https://mc-stan.org/docs/2_21/stan-users-guide/soft-k-means.html), that is also full of other similar or more advanced example models.
 
 
 
