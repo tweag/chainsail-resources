@@ -125,6 +125,7 @@ Finally, to know more about soft k-means and gaussian mixture, we again recommen
 
 
 ## To reproduce this example
+- Find the source code for this example in our `tweag/chainsail-resources` GitHub repository [here](https://github.com/tweag/chainsail-resources/tree/main/examples/soft-kmeans). Other examples also exist in the `examples` directory of the repository.
 - The code to generate those figures lives in the Jupyter notebook `soft-kmeans.ipynb`. It is packaged with [Nix](https://github.com/NixOS/nix) through [JupyterWith](https://github.com/tweag/jupyterWith). It can be run with the following command:
   ```bash
   nix-shell shell-jupyter.nix --command 'jupyter-notebook soft-kmeans.ipynb'
