@@ -110,8 +110,19 @@ And finally, the clusters assignments are closer to what would be expected with 
 
 
 
+## Conclusion
+While this example showcased a trivial problem, it highlighted the difficulty for single-chain MCMC algorithms to correctly sample multimodal posteriors, and the biases that it could lead to in the case of soft k-means clustering.
+And while the posterior distribution is clearly visible in this 1D case, most real life problems generate highly dimensional posteriors, and potentially highly mutimodal as well, in which case a bias in sampling is much less obvious to detect.
 
-## Reproduce the example
+[Chainsail](https://chainsail.io/) aims at providing a serverless and user-friendly solution to this problem.
+We recently released our first public version of the service, which you can read about more in our [annoucement blog post](https://www.tweag.io/blog/)[Change the link to the announcement blog post].
+We also wrote a series of blog posts about MCMC sampling algorithms, the fourth and last of which describes the core algorithm of Chainsail itself, [Replica Exchange](https://www.tweag.io/blog/2020-10-28-mcmc-intro-4/).
+
+Finally, to know more about soft k-means and gaussian mixture, we again recommend the chapter 9 of *Christopher M. Bishop*'s book *Pattern Recognition and Machine Learning*, and the [Stan documentation](https://mc-stan.org/docs/2_21/stan-users-guide/soft-k-means.html), that is also full of other similar or more advanced example models.
+
+
+
+## To reproduce this example
 - The code to generate those figures lives in the Jupyter notebook `soft-kmeans.ipynb`. It is packaged with [Nix](https://github.com/NixOS/nix) through [JupyterWith](https://github.com/tweag/jupyterWith). It can be run with the following command:
   ```bash
   nix-shell shell-jupyter.nix --command 'jupyter-notebook soft-kmeans.ipynb'
