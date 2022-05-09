@@ -46,11 +46,11 @@ We created a [simple Metropolis MCMC sampler](https://www.tweag.io/blog/2019-10-
 Note that single chain sampling is also what most probabilistic programming libraries provide by default, although in a more advanced manner: they usually give the possibility to mix samples from multiple isolated chains and provide some sort of initial state estimation, which in practice makes these algorithms a bit more robust than our naive implementation here.
 
 ### Sampling
-With an initial state for the MCMC chain set at `(mean of 1st component, mean of 2nd component) = (1, 0)`, the chain gets stuck in the lower probability mode.
-That means that the mixture component with the higher weight (component 2) incorrectly fits the cluster with the lower number of points and vice versa.
+With an initial state for the MCMC chain set at `(mean of 1st component, mean of 2nd component) = (1, 0)`, the chain gets stuck in the lower probability mode:
 
 <img alt="sampling single chain with initial state = (1, 0)" src="./images/sampling_sc_initstate-1-0.png" height="400"/>
 
+That means that the mixture component with the higher weight (component 2) incorrectly fits the cluster with the lower number of points and vice versa.
 As the following histogram shows, this results in the samples of the means being slightly offset from their expected positions (`~(0, 1.5)`) due to the mismatch between the number of points in the cluster and the weight of the Gaussian mixture component:
 
 <img alt="sampled means single chain" src="./images/samples_means_sc_initstate-1-0.png" height="400"/>
