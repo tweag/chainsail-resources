@@ -5,7 +5,7 @@ K-means algorithms are usually applied to a range of different tasks, like explo
 Although clustering is particularly powerful on high dimensional datasets (as it allows to define clusters that could difficultly be inferred by a human), in this blog post, for the sake of simpler visualization, we simulate an abstract clustering problem in one dimension only.
 
 This example aims to illustrate a use case of [Chainsail](https://chainsail.io/), a web service we developed that helps with sampling multimodal probability distributions.
-See the [Chainsail announcement blog post](TODO) for a quick introduction to Chainsail! 
+See the [Chainsail announcement blog post](TODO) for a quick introduction to Chainsail!  
 The Bayesian model discussed here exhibits such a multimodal posterior distribution, and whereas single-chain MCMC algorithms notoriously struggle to correctly sample similar posteriors, we will show how Chainsail improves on that state of affairs.
 
 
@@ -47,11 +47,11 @@ Note that single chain sampling is also what most probabilistic programming libr
 
 ### Sampling
 With an initial state for the MCMC chain set at `(mean of 1st component, mean of 2nd component) = (1, 0)`, the chain gets stuck in the lower probability mode.
-That means that the mixture component with the higher weight (component 2) incorrectly fits the cluster with the lower number of points, and vice versa.
+That means that the mixture component with the higher weight (component 2) incorrectly fits the cluster with the lower number of points and vice versa.
 
 <img alt="sampling single chain with initial state = (1, 0)" src="./images/sampling_sc_initstate-1-0.png" height="400"/>
 
-As the following histogram, this results in the samples of the means being slightly offset from their expected positions (`~(0, 1.5)`) due to the mismatch between the number of points in the cluster and the weight of the Gaussian mixture component (low-weight component fitting the cluster with higher number of points, and vice versa):
+As the following histogram shows, this results in the samples of the means being slightly offset from their expected positions (`~(0, 1.5)`) due to the mismatch between the number of points in the cluster and the weight of the Gaussian mixture component:
 
 <img alt="sampled means single chain" src="./images/samples_means_sc_initstate-1-0.png" height="400"/>
 
@@ -60,9 +60,9 @@ As the following histogram, this results in the samples of the means being sligh
 Soft k-means clustering treats the cluster assignments as probability distributions over the clusters.
 Each data point is associated with a probability distribution for each cluster, which is obtained from a transformation of the samples of the means (called the "soft Z" transformed samples).
 These soft Z distributions provide the probability of each point to belong to each cluster.
-In his book *Pattern Recognition and Machine Learning*, Christopher M. Bishop also calls this probability the **responsibility** that a component takes for explaining an observation *X* (chapter 9.2, page 432).
+In his book *Pattern Recognition and Machine Learning*, Christopher M. Bishop also calls this probability the *responsibility* that a component takes for explaining an observation *X* (chapter 9.2, page 432).
 We will adopt this name in the rest of this example.
-The responsibilities for three individual data points are shown below (one point located on the left, one in the middle, and one on the right).
+The histograms for the responsibilities of three individual data points are shown below (one point located on the left, one in the middle, and one on the right):
 
 <img alt="Soft_z analysis" src="./images/soft-z_samples_sc2.png"/>
 
@@ -99,7 +99,7 @@ The sampled means are shown below:
 
 We identify the two higher peaks with the samples from the higher posterior probability mode, and the lower peaks with samples from the lower probability one.
 Similarly to the samples from the single chain, the means sampled from the lower posterior mode are offset from their expected position.
-But on the other hand, samples from the higher posterior mode match the theoretical cluster centroids much better, since in this case, the higher weight component of the Gaussian mixture is fitted to the cluster with the higher number of points, and vice versa.
+But at the same time, samples from the higher posterior mode match the theoretical cluster centroids much better, since in this case, the higher weight component of the Gaussian mixture is fitted to the cluster with the higher number of points and vice versa.
 This demonstrates that Chainsail found _both_ modes - the "correct", desired one _and_ the less likely one and thus correctly and honestly samples the full posterior distribution.
 
 
@@ -118,13 +118,13 @@ Finally, the clusters assignments are much closer to what would be expected with
 
 ## Conclusion
 While this example showcased a rather trivial, one-dimensional problem, it highlighted the difficulty for single-chain MCMC algorithms to correctly sample multimodal posteriors, and the biased analysis results that this leads to.
-Keep in mind that while the posterior distribution is easily to visualize in this 1D case, most real life problems generate highly dimensional posteriors, and potentially are highly multimodal as well, in which case a bias in sampling is much less obvious to detect.
+Keep in mind that while the posterior distribution is easily to visualize in this 1D case, most real life problems generate highly dimensional posteriors, in which case a bias in sampling is much less obvious to detect.
 
 [Chainsail](https://chainsail.io/) aims at providing a hosted and user-friendly solution to this problem.
 We recently released our first public version of the service, which you can read about more in our [annoucement blog post](TODO).
 We also wrote a series of blog posts about MCMC sampling algorithms, the fourth and last of which describes the core algorithm of Chainsail itself, [Replica Exchange](https://www.tweag.io/blog/2020-10-28-mcmc-intro-4/).
 
-Finally, to learn more about soft k-means and Gaussian mixtures, we heartily recommend chapter 9 of Christopher M. Bishop's book *Pattern Recognition and Machine Learning*, and the [Stan documentation](https://mc-stan.org/docs/2_21/stan-users-guide/soft-k-means.html), which is full of other similar and also more advanced example models.
+Finally, to learn more about soft k-means and Gaussian mixtures, we heartily recommend chapter 9 of Christopher M. Bishop's book *Pattern Recognition and Machine Learning* and the [Stan documentation](https://mc-stan.org/docs/2_21/stan-users-guide/soft-k-means.html), which is full of other similar and also more advanced example models.
 
 
 
