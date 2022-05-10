@@ -118,7 +118,7 @@ Finally, the clusters assignments are much closer to what would be expected with
 
 ## Conclusion
 While this example showcased a rather trivial, one-dimensional problem, it highlighted the difficulty for single-chain MCMC algorithms to correctly sample multimodal posteriors, and the biased analysis results that this leads to.
-Keep in mind that while the posterior distribution is easily to visualize in this 1D case, most real life problems generate highly dimensional posteriors, in which case a bias in sampling is much less obvious to detect.
+Keep in mind that while the posterior distribution is easy to visualize in this 1D case, most real life problems generate highly dimensional posteriors, in which case a bias in sampling is much less obvious to detect.
 
 [Chainsail](https://chainsail.io/) aims at providing a hosted and user-friendly solution to this problem.
 We recently released our first public version of the service, which you can read about more in our [annoucement blog post](TODO).
