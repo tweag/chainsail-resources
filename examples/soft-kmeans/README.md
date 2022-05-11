@@ -137,4 +137,9 @@ Finally, to learn more about soft k-means and Gaussian mixtures, we heartily rec
 - The data points in `data.txt` were generated with `make_data.py`
 - The model used is defined in `probability.py`
 - The single chain samples `sc_samples.npy` were generated with the module `single_chain.py`
-- The Chainsail samples `chainsail_samples.npy` were generated with Chainsail's web application.
+- The Chainsail samples `chainsail_samples.npy` were generated with Chainsail's web application, using the following parameters:
+  - Number of production samples = 10000 (with a dump interval of 5, which results in 2000 samples)
+  - Number of optimization samples = 2000
+  - Initial number of replicas = 4
+  - Maximum number of replicas = 8
+  - Minimum beta = 0.1
