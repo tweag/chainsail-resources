@@ -1,10 +1,10 @@
 { buildPythonPackage, fetchPypi, numpy }:
 buildPythonPackage rec {
   pname = "chainsail-helpers";
-  version = "0.1.1";
+  version = "0.1.2";
   src = fetchPypi {
     inherit pname version;
-    sha256 = "261e83de5f9e4aca3be673c34aec09d7ccab35f40f1971c8b27f561fae6ce106";
+    sha256 = "sha256-9BV8UdrTuXX+WzjOd34cjE0jomuOM4QZ8uYO9iLSJDg=";
   };
   doCheck = false;
   propagatedBuildInputs = [ numpy ];
