@@ -5,7 +5,7 @@ Probability density of a Gaussian mixture defined by a PyMC model
 import numpy as np
 import pymc as pm
 
-from chainsail_helpers.pdf.pymc3 import PyMCPDF
+from chainsail_helpers.pdf.pymc import PyMCPDF
 
 
 means = np.array([[-1.0, -2.0], [1.0, 1.0], [3.0, 2.0], [2.0, -2.0]])
