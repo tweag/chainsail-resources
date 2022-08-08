@@ -1,11 +1,11 @@
 """
-Probability density of a Gaussian mixture defined by a PyMC3 model
+Probability density of a Gaussian mixture defined by a PyMC model
 """
 
 import numpy as np
-import pymc3 as pm
+import pymc as pm
 
-from chainsail_helpers.pdf.pymc3 import PyMC3PDF
+from chainsail_helpers.pdf.pymc3 import PyMCPDF
 
 
 means = np.array([[-1.0, -2.0], [1.0, 1.0], [3.0, 2.0], [2.0, -2.0]])
@@ -25,6 +25,5 @@ with pm.Model() as model:
     pm.Mixture("coords", w=weights, comp_dists=components, shape=(2,))
 
 
-pdf = PyMC3PDF(model)
-initial_states = np.array([-1.0, 0.5])
-
+pdf = PyMCPDF(model)
+initial_states = np.array([-1.0, 0.5, 3.0, -2.5])
