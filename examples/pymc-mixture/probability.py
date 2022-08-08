@@ -26,4 +26,10 @@ with pm.Model() as model:
 
 
 pdf = PyMCPDF(model)
-initial_states = np.array([-1.0, 0.5, 3.0, -2.5])
+# This is the concatenation of the flattened
+# values of all PyMC model variables in alphabetical order, so if
+# you have two variables var1 and var2 with shapes (2, 2) and (3,),
+# x is (in pseudo code) (x1, x2, x3, x4, x5, x6, x7) with
+# (x1, ..., x4) = var1.flatten()
+# and (x5, ..., x7) = var2.flatten().
+initial_states = np.array([-1.0, 0.5])
