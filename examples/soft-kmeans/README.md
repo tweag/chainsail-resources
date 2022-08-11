@@ -120,15 +120,11 @@ While this example showcased a rather trivial, one-dimensional problem, it highl
 Keep in mind that while the posterior distribution is easy to visualize in this 1D case, most real life problems generate highly dimensional posteriors, in which case a bias in sampling is much less obvious to detect.
 [Chainsail](https://chainsail.io/) aims at providing a hosted and user-friendly solution to this problem.
 
-<!-- TODO: Change the link in the line below once the PR on chainsail-resources is merged -->
-
-The Chainsail-ready Gaussian mixture model, the single chain MCMC sampler, and all the code used to generate figures and data for this blog post are available [here](https://github.com/tweag/chainsail-resources/tree/etienne/soft-k-means-playground/examples/soft-kmeans), as part of a bigger Git repository containing other examples of Chainsail use-cases and detailed documentation of Chainsail itself.
 We also wrote a series of blog posts about MCMC sampling algorithms, the fourth and last of which describes the core algorithm of Chainsail, [Replica Exchange](https://www.tweag.io/blog/2020-10-28-mcmc-intro-4/).
 Finally, to learn more about soft k-means and Gaussian mixtures, we heartily recommend chapter 9 of Christopher M. Bishop's book _Pattern Recognition and Machine Learning_ and the [Stan documentation](https://mc-stan.org/docs/2_21/stan-users-guide/soft-k-means.html), which is full of other similar and also more advanced example models.
 
 
-## To reproduce this example
-- Find the source code for this example in our `tweag/chainsail-resources` GitHub repository [here](https://github.com/tweag/chainsail-resources/tree/main/examples/soft-kmeans). Other examples also exist in the `examples` directory of the repository.
+### To reproduce this example
 - The code to generate those figures lives in the Jupyter notebook `soft-kmeans.ipynb`. It is packaged with [Nix](https://github.com/NixOS/nix) through [JupyterWith](https://github.com/tweag/jupyterWith). It can be run with the following command:
   ```bash
   nix-shell shell-jupyter.nix --command 'jupyter-notebook soft-kmeans.ipynb'
