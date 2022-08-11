@@ -10,7 +10,7 @@ See the [algorithms in Chainsail](./algorithms/) for relevant documentation.
 - **job name:** allows you to more easily distinguish several jobs you might submit
 - **number of production samples:** the number of MCMC samples Chainsail will draw from your probability distribution during the production run. Note that Chainsail currently subsamples to every 5th MCMC sample: if you enter, say, 20,000 here, your downloaded results will contain 4,000 samples for every replica. _Default:_ 10,000
 - **maximum number of replicas:** Chainsail will increase (or decrease) the number of replicas automatically such that the acceptance rate between neighboring replicas is approximately constant (by default, 0.2). If your sampling problem is very hard, obtaining these acceptance rates might require a lot of replicas. This parameter defines the upper limit of the number of replicas. If the schedule tuning algorithm thinks that more replicas than that are required, it will stop adapting, use the maximum number of replicas and interpolate the temperature schedule such that acceptance rates are still constant, but lower than the target acceptance rate. Best start with the default value and increase if the maximum is hit and acceptance rates are too low. _Default:_ 20
-- **probability definition:** this is a URL to a .zip file containing your `probability.py` Python module (see steps 3-7 of the [walkthrough](./walkthrough.md))
+- **probability definition:** this is a .zip file containing your `probability.py` Python module
 - **dependencies:** a comma-separated list of `pip`-installable Python dependencies your `probability.py` might require
 
 ## Advanced parameters
