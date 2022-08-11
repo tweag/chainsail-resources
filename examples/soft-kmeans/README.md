@@ -18,7 +18,7 @@ We generated two one-dimensional clusters of points by drawing from two normal p
 - **Cluster 1:** 80 points, drawn for a normal probability distribution of mean `mu1 = 0` and standard deviation `sigma = 1`
 - **Cluster 2:** 120 points, drawn for a normal probability distribution of mean `mu2 = 1.5` and standard deviation `sigma = 1`
 
-![data points](./data_points_1D.png)
+![data points](./images/data_points_1D.png)
 
 ## Model
 
@@ -32,7 +32,7 @@ We don't discuss the model in detail here, but additional details can be found i
 
 The posterior distribution is visualized below:
 
-![posterior distribution](./posterior_1D.png)
+![posterior distribution](./images/posterior_1D.png)
 
 The posterior shows two modes, each of which correspond to one possible parameter configuration explaining the data: in the first configuration, components 1 and 2 of the mixture generate cluster 1 and 2 respectively.
 In the second configuration, the roles of the mixture components are reversed: component 1 generates cluster 2 and component 2 generates cluster 1.
@@ -48,12 +48,12 @@ Note that single chain sampling is also what most probabilistic programming libr
 
 With an initial state for the MCMC chain set at `(mean of 1st component, mean of 2nd component) = (1, 0)`, the chain gets stuck in the lower probability mode:
 
-![single chain sampling with initial state = (1, 0)](./sampling_sc_initstate-1-0.png)
+![single chain sampling with initial state = (1, 0)](./images/sampling_sc_initstate-1-0.png)
 
 That means that the mixture component with the higher weight (component 2) incorrectly fits the cluster with the lower number of points and vice versa.
 As the following histogram shows, this results in the samples of the means being slightly offset from their expected positions (`~(0, 1.5)`) due to the mismatch between the number of points in the cluster and the weight of the Gaussian mixture component:
 
-![means sampled from single chain sampling](./samples_means_sc_initstate-1-0.png)
+![means sampled from single chain sampling](./images/samples_means_sc_initstate-1-0.png)
 
 ### Cluster assignment
 
@@ -64,7 +64,7 @@ In his book _Pattern Recognition and Machine Learning_, Christopher M. Bishop al
 We will adopt this name in the rest of this example.
 The histograms for the responsibilities of three individual data points are shown below (one point located on the left, one in the middle, and one on the right):
 
-![responsibility samples, for 3 example points](./soft-z_samples_sc3.png)
+![responsibility samples, for 3 example points](./images/soft-z_samples_sc3.png)
 
 The leftward point at `x = -0.687` shows a higher responsibility for cluster 2, and which is clearly distinct from the responsibility for cluster 1.
 Therefore, it can be unequivocally assigned to the cluster 2.
@@ -75,7 +75,7 @@ Note that this uncertainty is not quantified in the traditional "hard" k-means a
 
 If we summarize the responsibilities by, for example, their median value, soft k-means clustering can be converted to a "hard" k-means by assigning each point to its cluster of highest median probability.
 
-![cluster assignment](./cluster_assignment_sc_initstate-1-0.png)
+![cluster assignment](./images/cluster_assignment_sc_initstate-1-0.png)
 
 In this case, because only one mode of the posterior is sampled, and in particular the lower probability one, the cluster assignment is rather flawed.
 The points at the frontier of the two clusters (framed in dotted line) were assigned to the left cluster, which is the less probable one.
@@ -90,12 +90,12 @@ Let's see whether the sampling and clustering obtained with Chainsail does a bet
 
 After running the Chainsail web application, we find that Chainsail allows the main MCMC chain to sample both the low and the high probability mode instead of getting stuck in one of them:
 
-![chainsail sampling with initial state = (1, 0)](./sampling_chainsail_initstate-1-0.png)
+![chainsail sampling with initial state = (1, 0)](./images/sampling_chainsail_initstate-1-0.png)
 
 In fact, the main MCMC chain jumps frequently between both modes.
 The sampled means are shown below:
 
-![means sampled from chainsail sampling](./samples_means_chainsail_initstate-1-0.png)
+![means sampled from chainsail sampling](./images/samples_means_chainsail_initstate-1-0.png)
 
 We identify the two higher peaks with the samples from the higher posterior probability mode, and the lower peaks with samples from the lower probability one.
 Similarly to the samples from the single chain, the means sampled from the lower posterior mode are offset from their expected position.
@@ -106,13 +106,13 @@ This demonstrates that Chainsail found _both_ modes - the "correct", desired one
 
 Similarly, the soft Z samples show bimodal distributions:
 
-![responsibility samples, for 3 example points](./soft-z_samples_chainsail3.png)
+![responsibility samples, for 3 example points](./images/soft-z_samples_chainsail3.png)
 
 Therefore, with Chainsail, we capture the fact that there is a certain responsibility for _both_ component 1 and 2 to have generated each data point.
 This is absent in the soft Z histograms for the single chain, and thus single-chain sampling made us miss out on important information.
 Finally, the clusters assignments are much closer to what would be expected with a hard k-means clustering:
 
-![cluster assignment](./cluster_assignment_chainsail_initstate-1-0.png)
+![cluster assignment](./images/cluster_assignment_chainsail_initstate-1-0.png)
 
 ## Conclusion
 
