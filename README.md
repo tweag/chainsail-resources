@@ -7,8 +7,7 @@ In the context of Bayesian statistics, they arise in the case of unidentifiable 
 While this early version of Chainsail is targeted towards experienced Markov Chain Monte Carlo (MCMC) practitioners, it is still designed to be user-friendly and in this repository, we provide some documentation on how to use Chainsail and the algorithms at work behind the scene.
 
 ## Usage
-Learn how to use Chainsail by checking out the walkthrough [here](./documentation/walkthrough.md).
-If you have any questions, don't hesitate to [shoot us a message](mailto:support@chainsail.io)!
+Learn how to use Chainsail by checking out the walkthrough [here](./documentation/walkthrough.md). Most importantly, you will want to learn how to [define your own probability distribution](./documentation/defining_custom_probability.md).
 
 ## The algorithms behind Chainsail
 Chainsail implements several important algorithms, which we describe here in not too much detail:
