@@ -10,7 +10,7 @@ Follow these steps when defining your own probability distribution:
    - `numpy` (version 1.23.2),
    - `scipy` (version 1.9.1),
    - `pymc` (version 4.1.7),
-   - `chainsail-helpers` (version 0.1.3.1)
+   - `chainsail-helpers` (version 0.1.4)
 2. test whether your PDF implementation actually works by calling its `log_{prob / likelihood, prior}` and `log_{prob / likelihood, prior}_gradient` methods with your `initial_states` as an argument. We will provide an automated way to easily test this later.
 3. prepare a zip file of your `probability.py` and any other file dependencies your code may have (e.g., data files) and make sure that you don't have subdirectories and that this structure matches how you access these files in your `probability.py`.
 4. upload that zip file in the job submission form.
