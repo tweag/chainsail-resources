@@ -33,18 +33,18 @@ class Pdf(PosteriorPDF):
 
     def log_prior_gradient(self, x):
         x = x.reshape(self.n_clusters, self.n_dim)
-        bla = -(x - self.prior_mean) / self.prior_sigma ** 2
-        return bla.ravel()
+        gradient = -(x - self.prior_mean) / self.prior_sigma ** 2
+        return gradient.ravel()
 
     def log_likelihood(self, x):
         # Reshape x & data to dimensions (n_clusters, n_dim, n_data_points)
         x = x.reshape(self.n_clusters, self.n_dim)[:, :, np.newaxis]
         data = self.data.T[np.newaxis, :, :]
-        a = logsumexp(
+        log_likelihood_per_datum = logsumexp(
             -0.5 * np.sum((x - data) ** 2, 1)
             + np.log(self.weights[:, np.newaxis])
             / (self.likelihood_sigma ** 2), 0)
-        return a.sum()
+        return log_likelihood_per_datum.sum()
 
     def log_likelihood_gradient(self, x):
         # Reshape x & data to dimensions (n_clusters, n_dim, n_data_points)
@@ -54,8 +54,8 @@ class Pdf(PosteriorPDF):
             -0.5 * np.sum((x - data) ** 2, 2)
             / (self.likelihood_sigma ** 2)
             + np.log(self.weights)[:, np.newaxis])
-        im = -(x - data) * d_outer[:, :, np.newaxis]
-        return im.sum(axis=2).ravel()
+        grad_per_cluster_and_datum = -(x - data) * d_outer[:, :, np.newaxis]
+        return grad_per_cluster_and_datum.sum(axis=2).ravel()
 
 
 pdf = Pdf(
