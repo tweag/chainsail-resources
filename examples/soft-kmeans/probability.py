@@ -9,7 +9,7 @@ path = os.path.dirname(os.path.abspath(__file__))
 data = np.loadtxt(os.path.join(path, "data.txt"), ndmin=2)
 
 
-class Pdf(PosteriorPDF):
+class SoftKMeansPdf(PosteriorPDF):
     def __init__(
         self,
         prior_sigma,
@@ -58,7 +58,7 @@ class Pdf(PosteriorPDF):
         return grad_per_cluster_and_datum.sum(axis=2).ravel()
 
 
-pdf = Pdf(
+pdf = SoftKMeansPdf(
     prior_sigma=5,
     prior_mean=np.array([[1], [1]]),
     weights=[80, 120],
@@ -69,7 +69,7 @@ initial_states = np.array([1., 0.])
 
 # 2D example
 
-# pdf = Pdf(
+# pdf = SoftKMeansPdf(
 #     prior_sigma=5,
 #     prior_mean=np.array([[0, 0], [0, 0]]),
 #     weights=[80, 160],
