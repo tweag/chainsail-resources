@@ -11,7 +11,7 @@ It is convenient to choose a parameterized family of "tempering" distributions a
 While that family of tempering distributions is essentially arbitrary, Chainsail currently implements two tempering schemes.
 
 ### Global tempering
-The most traditional and popular one tempering scheme is one where 
+The most traditional and popular tempering scheme is one where 
 
 $$
 p(x|\beta)=p(x)^\beta
@@ -22,7 +22,7 @@ $\beta$ is often referred to as an (inverse) temperature in analogy to the [cano
 
 ### Likelihood tempering
 In Bayesian inference, we have $p(x|D) \propto p(D|x) \times p(x)$.
-$p(x|D)$ is the posterior distribution and usually what a Chainsail user wants to sample.
+The posterior distribution, $p(x|D)$, is usually what a Chainsail user wants to sample.
 It is proportional to the product of the likelihood $p(D|x)$ and the prior $p(x)$.
 Often, the prior is not very hard to sample, so a sensible choice for a tempering scheme is to apply an inverse temperature $\beta$ only to the likelihood, like so:
 
