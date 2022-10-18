@@ -30,6 +30,8 @@ $$ p(x|D, \beta) \propto p(D|x)^\beta \times p(x) $$
 
 For $\beta=1$, we sample from the full posterior, while for $0 < \beta \ll 1$ the likelihood and thus the influence of the data are essentially switched off.
 
+Note that likelihood tempering is currently not supported for the [Stan and PyMC interfaces](https://github.com/tweag/chainsail-resources/tree/main/chainsail_helpers/chainsail_helpers/pdf).
+
 ## Choice of inverse temperatures
 If, for two neighboring (in the schedule sense) replicas, the values for $\beta$ are too different, exchanges between those replicas are unlikely to be accepted.
 If, on the other hand, all replicas are very close in $\beta$ space, many exchanges will be accepted, but also many, many replicas are required to bridge between the target (cold) replica and the flattest (hottest) copy, potentially wasting computing resources.
