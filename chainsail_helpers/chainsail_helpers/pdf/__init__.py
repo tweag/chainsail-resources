@@ -1,10 +1,10 @@
 """
 Abstract PDF interfaces for Chainsail
 """
-from abc import abstractmethod, ABCMeta
+from abc import abstractmethod, ABC
 
 
-class PDF(ABCMeta):
+class PDF(ABC):
     """
     Minimal interface general probability densities consumed by Chainsail have
     to conform to.
@@ -37,7 +37,7 @@ class PDF(ABCMeta):
             np.ndarray: 1D array of floats containing the flattened
               log-probability gradient evaluated at x
         """
-        pass
+        passs
 
 
 class PosteriorPDF(PDF):
