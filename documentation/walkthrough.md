@@ -10,9 +10,9 @@ But if you're impatient, here's the sequence of steps users have to take:
    - Job name: pick any job name you want.
    - Number of production samples: make some kind of estimate of how many samples you want to have produced in the end. Chainsail will produce that number of samples and write out every 5th of these samples.
    - Maximum number of replicas: the higher this number, the better the multimodal sampling will be, but the more computation resources you will burn. Start with the default value of 10 and increase if you suspect that sampling is not correct.
-   - Probability definition: uploaded your zipped custom `probability.py` or download an [example](https://storage.googleapis.com/resaas-dev-public/mixture.zip) (a mixture of four Gaussians in two dimensions) 
+   - Probability definition: uploaded your zipped [custom](./defining_custom_probability.md) `probability.py` or download an [example](https://storage.googleapis.com/resaas-dev-public/mixture.zip) (a mixture of four Gaussians in two dimensions) 
    - Dependencies: using a comma-separated list, enter any PIP-installable Python dependencies your `probability.py` requires.
-If you click on "more parameters", you'll find exactly that - they are [documented elsewhere](./documentation/parameters.md).
+If you click on "more parameters", you'll find exactly that - they are [documented elsewhere](./parameters.md).
 Finally, create your job by clicking the "Create job" button.
 5. Start your job by clicking the corresponding button in the job table.
 6. Monitor the progress of your job and the log output on the dashboard, which is accessible via the job table, too.
