@@ -37,7 +37,7 @@ class PDF(ABC):
             np.ndarray: 1D array of floats containing the flattened
               log-probability gradient evaluated at x
         """
-        passs
+        pass
 
 
 class PosteriorPDF(PDF):
