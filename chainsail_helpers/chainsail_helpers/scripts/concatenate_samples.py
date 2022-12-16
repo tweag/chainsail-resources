@@ -16,9 +16,17 @@ def main():
         type=str,
         help='Simulation run, e.g. "/some/path/to/production_run"'
     )
+    parser.add_argument(
+        "replica_number",
+        type=int,
+        default=1,
+        help=('Number of replica for which to concatenate samples. "1" is the target'
+              'distribution, and higher numbers correspond to higher temperature / '
+              'flatter replicas')
+    )
     parser.add_argument("output_file", type=str, help="Output file")
     args = parser.parse_args()
-
+    
     with open(os.path.join(args.simulation_run, "config.yml")) as f:
         dump_interval = None
         for l in f.readlines():
@@ -29,8 +37,8 @@ def main():
     samples = []
     while True:
         try:
-            fname = "samples_replica1_{}-{}.pickle".format(
-                ctr, ctr + dump_interval)
+            fname = "samples_replica{}_{}-{}.pickle".format(
+                args.replica_number, ctr, ctr + dump_interval)
             samples += np.load(os.path.join(args.simulation_run,
                                "samples", fname), allow_pickle=True)
             ctr += dump_interval
