@@ -145,30 +145,35 @@ class PosteriorStanPDF(BaseStanPDF):
 
     def __init__(self, model_code: str, data: dict[str, Any] | None=None) -> None:
         """
-        Initializes a Chainsail-compatible PDF wrapper around the httpstan
-        REST API.
+        Initializes a Chainsail-compatible, likelihood-temperable PDF wrapper around
+        the httpstan REST API.
+
+        The Stan model has to take the additional "data" in the `data` section:
+        ```
+        int<lower=0, upper=1> include_prior ;
+        int<lower=0, upper=1> include_likelihood ;
+        ```
+
+        and in the `model` section, these values need to be used to conditionally switch
+        on and off the prior and likelihood contributions, like so:
+
+        ```
+        if (include_prior) {
+            param_a ~ SomeDistribution ;
+            param_b ~ SomeOtherDistribution ;
+        } ;
+
+        if (include_likelihood) {
+            data ~ YetAnotherDistribution(param_a, param_b)
+        } ;
+        ```
 
         Args:
-            model_code(string): Stan model specificaton that will be compiled
+            model_code(string): Stan model specification that will be compiled
               by httpstan
             data(dict): observations to condition on
         """
-        r = requests.post(
-            f"{self._HTTPSTAN_URL}/v1/models",
-            json={"program_code": model_code},
-        )
-        # if the model did not compile successfully, httpstan returns
-        # a 400 status code (bad request)
-        if r.status_code == 400:
-            raise Exception(
-                ("Model compilation failed. httpstan message:\n"
-                 f"{r.json()['message']}")
-            )
-        else:
-            r.raise_for_status()
-        model_id = r.json()["name"]
-        self._httpstan_model_route = f"{self._HTTPSTAN_URL}/v1/{model_id}"
-        self._data = data or {}
+        super().__init__(model_code, data)
 
     @staticmethod
     def _tag_data(data: dict[str, Any], include_prior: bool=True, include_likelihood: bool=True) -> dict[str, Any]:
