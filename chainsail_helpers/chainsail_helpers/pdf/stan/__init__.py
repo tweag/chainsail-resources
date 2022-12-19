@@ -1,7 +1,9 @@
 """
 Interfaces for Chainsail probability densities defined by a Stan model
 """
+from __future__ import annotations
 
+from typing import Any
 import numpy as np
 import requests
 
@@ -15,7 +17,7 @@ class StanPDF(PDF):
     """
     _HTTPSTAN_URL = "http://localhost:8082"
 
-    def __init__(self, model_code, data=None):
+    def __init__(self, model_code: str, data: dict[str, Any] | None=None) -> None:
         """
         Initializes a Chainsail-compatible PDF wrapper around the httpstan
         REST API.
@@ -43,12 +45,36 @@ class StanPDF(PDF):
         self._data = data or {}
 
     @staticmethod
-    def _tag_data(data, include_prior, include_likelihood):
+    def _tag_data(data: dict[str, Any], include_prior: bool, include_likelihood: bool) -> dict[str, Any]:
+        """
+        Adds tags / flags to the data that indicate whether the prior or likelihood should be included.
+        Args:
+            data: observations to condition on
+            include_prior: whether the prior contributions are taken into account in later log-probability
+              or gradient evaluations
+            include_likelihood: whether the likelihood is taken into account in later log-probability
+              or gradient evaluations
+
+        Returns:
+            data dictionary with additional entries `include_prior` and `include_likelihood`, set to either
+              0 or 1.        
+        """
         return {**data,
                 "include_prior": int(include_prior),
                 "include_likelihood": int(include_likelihood)}
 
-    def _query_log_prob(self, x, include_prior=True, include_likelihood=True):
+    def _query_log_prob(self, x: np.ndarray, include_prior: bool=True, include_likelihood: bool=True) -> float:
+        """
+        Uses the httpstan HTTP API to evaluate the model's log-probability.
+
+        Args:
+            x: 1D array of floats at which the log-likelihood is evaluated
+            include_prior: whether the prior contributions are taken into account
+            include_likelihood: whether the likelihood is taken into account
+
+        Returns:
+            log-probability evaluated at `x`
+        """
         try:
             r = requests.post(
                 f"{self._httpstan_model_route}/log_prob",
@@ -63,7 +89,18 @@ class StanPDF(PDF):
         except Exception as e:
             raise Exception(f"Querying log-prob failed: Error: {e}")
 
-    def _query_log_prob_gradient(self, x, include_prior=True, include_likelihood=True):
+    def _query_log_prob_gradient(self, x: np.ndarray, include_prior: bool=True, include_likelihood: bool=True) -> np.ndarray:
+        """
+        Uses the httpstan HTTP API to evaluate the model's log-probability gradient.
+
+        Args:
+            x: 1D array of floats at which the log-probability's gradient is evaluated
+            include_prior: whether the prior contributions are taken into account
+            include_likelihood: whether the likelihood is taken into account
+
+        Returns:
+            1D array with log-probability gradient evaluated at `x`
+        """
         try:
             r = requests.post(
                 f"{self._httpstan_model_route}/log_prob_grad",
@@ -78,7 +115,7 @@ class StanPDF(PDF):
         except Exception as e:
             raise Exception(f"Querying log-prob gradient failed: Error: {e}")
 
-    def log_likelihood(self, x):
+    def log_likelihood(self, x: np.ndarray) -> float:
         """
         Evaluates the log-likelihood of the model.
         
@@ -86,15 +123,15 @@ class StanPDF(PDF):
         datums `include_prior` set to `0` and `include_likelihood` set to `1`.
 
         Args:
-            x(np.ndarray): 1D array of floats at which the log-likelihood
+            x: 1D array of floats at which the log-likelihood
               is evaluated
 
         Returns:
-            float: log-likelihood evaluated at x
+            log-likelihood evaluated at x
         """
         return self._query_log_prob(x, include_prior=False)
 
-    def log_prior(self, x):
+    def log_prior(self, x: np.ndarray) -> float:
         """
         Evaluates the log-prior probability of the model.
         
@@ -102,70 +139,70 @@ class StanPDF(PDF):
         datums `include_prior` set to `1` and `include_likelihood` set to `0`.
 
         Args:
-            x(np.ndarray): 1D array of floats at which the log-prior probability
+            x: 1D array of floats at which the log-prior probability
               is evaluated
 
         Returns:
-            float: log-prior probability evaluated at x
+            log-prior probability evaluated at x
         """
         return self._query_log_prob(x, include_likelihood=False)
     
-    def log_prob(self, x):
+    def log_prob(self, x: np.ndarray) -> float:
         """
         Log-probability of the density to be sampled.
         Calls out to the httpstan server specified in self._httpstan_url.
         Args:
-            x(np.ndarray): 1D array of floats at which the log-probability
+            x: 1D array of floats at which the log-probability
               is evaluated
 
         Returns:
-            float: log-probability evaluated at x
+            log-probability evaluated at x
         """
         return self._query_log_prob(x)
 
-    def log_likelihood_gradient(self, x):
+    def log_likelihood_gradient(self, x: np.ndarray) -> np.ndarray:
         """
         Evaluates the gradient of the log-likelihood of the model.
         Calls out to the httpstan server specified in self._httpstan_url
         with datums `include_prior` set to `0` and `include_likelihood` set to `1`.
 
         Args:
-            x(np.ndarray): 1D array of floats at which the gradient of the
+            x: 1D array of floats at which the gradient of the
               log-likelihood is evaluated
 
         Returns:
-            np.ndarray: 1D array of floats containing the flattened
+            1D array of floats containing the flattened
               gradient of the log-likelihood evaluated at x
         """
         return self._query_log_prob_gradient(x, include_prior=False)
 
-    def log_prior_gradient(self, x):
+    def log_prior_gradient(self, x: np.ndarray) -> np.ndarray:
         """
         Evaluates the gradient of the log-prior density of the model.
         Calls out to the httpstan server specified in self._httpstan_url
         with datums `include_prior` set to `1` and `include_likelihood` set to `0`.
 
         Args:
-            x(np.ndarray): 1D array of floats at which the gradient of the
+            x: 1D array of floats at which the gradient of the
               log-prior density is evaluated
 
         Returns:
-            np.ndarray: 1D array of floats containing the flattened
+            1D array of floats containing the flattened
               gradient of the log-prior density evaluated at x
         """
         return self._query_log_prob_gradient(x, include_likelihood=False)
         
-    def log_prob_gradient(self, x):
+    def log_prob_gradient(self, x: np.ndarray) -> np.ndarray:
         """
         Gradient of the log-probability of the density to be sampled.
         Calls out to the httpstan server specified in self._httpstan_url.
 
         Args:
-            x(np.ndarray): 1D array of floats at which the log-probability
+            x: 1D array of floats at which the log-probability
               gradient is evaluated
 
         Returns:
-            np.ndarray: 1D array of floats containing the flattened
+            1D array of floats containing the flattened
               log-probability gradient evaluated at x
         """
         return self._query_log_prob_gradient(x)
