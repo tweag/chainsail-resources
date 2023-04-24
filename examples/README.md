@@ -7,7 +7,7 @@ This provides several simple use cases for Chainsail, in which a single Markov c
 
 The typical workflow to try out these use cases would be
 1. Run `python single_chain.py` in one of the example case directories (writes samples to a file `sc_samples.npy`, possibly install the dependencies in `requirements.txt`) and be unhappy with the result,
-2. run Chainsail using the same `probability.py`, but zipped and uploaded to some URL,
+2. run Chainsail using the same `probability.py`, but zipped and uploaded via the submission form,
 3. download the Chainsail results, unzip them and concatenate them to a single `numpy` array written to the example case directory by running (in this directory)
    ```bash
    $ unzip /path/to/results.zip -d /some/path
@@ -15,3 +15,5 @@ The typical workflow to try out these use cases would be
    ```
    `concatenate-samples` is a Python script available in the `chainsail-helpers` package.
 4. Run `python compare.py <example dir>/sc_samples.npy /some/path/chainsail_samples.npy` in the use case directory and (ideally) be amazed how much better Chainsail sampled your distribution :-)
+
+If you like to run one of these examples using the local controller-only deployment (https://github.com/tweag/chainsail/tree/main/app/controller#development-workflow), you'll also find an exemplary `job.json` job specification file in this directory.
