@@ -4,7 +4,7 @@ buildPythonPackage rec {
   version = "0.1.5.1";
   src = fetchPypi {
     inherit pname version;
-    sha256 = "3f01e4e98fe4b13e675a92b7c2e44ce4df1b3fccad058e73ed140c5a5d85ca35";
+    sha256 = "2e69fa0ed98aa1e4024ac66fb2b212ad81bb0ca71792da029b49f45c73769dcd";
   };
   doCheck = false;
   propagatedBuildInputs = [ numpy ];
