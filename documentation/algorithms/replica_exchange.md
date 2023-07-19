@@ -30,8 +30,8 @@ $$ p(x|D, \beta) \propto p(D|x)^\beta \times p(x) $$
 
 For $\beta=1$, we sample from the full posterior, while for $0 < \beta \ll 1$ the likelihood and thus the influence of the data are essentially switched off.
 
-Note that likelihood tempering is currently not supported for the [PyMC interface](https://github.com/tweag/chainsail-resources/tree/main/chainsail_helpers/chainsail_helpers/pdf/pymc/__init__.py).
-When using likelihood tempering with the Stan interface, note that you have to make small modifications to your Stan model definition, as explained in the documentation for the [`PosteriorStanPDF`] class in the [Stan wrapper](https://github.com/tweag/chainsail-resources/tree/main/chainsail_helpers/chainsail_helpers/pdf/stan/__init__.py).
+Note that likelihood tempering is currently neither supported for the [PyMC interface](https://github.com/tweag/chainsail-resources/tree/main/chainsail_helpers/chainsail_helpers/pdf/pymc/__init__.py) nor for the [BridgeStan wrapper]((https://github.com/tweag/chainsail-resources/tree/main/chainsail_helpers/chainsail_helpers/pdf/stan/bridgestan.py)).
+When using likelihood tempering with the Stan interface, note that you have to make small modifications to your Stan model definition, as explained in the documentation for the [`PosteriorStanPDF`] class in the [`httpstan` wrapper](https://github.com/tweag/chainsail-resources/tree/main/chainsail_helpers/chainsail_helpers/pdf/stan/httpstan.py).
 
 ## Choice of inverse temperatures
 If, for two neighboring (in the schedule sense) replicas, the values for $\beta$ are too different, exchanges between those replicas are unlikely to be accepted.

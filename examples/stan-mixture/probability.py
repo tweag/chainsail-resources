@@ -4,7 +4,7 @@ Probability density of a Gaussian mixture defined by a Stan model
 
 import numpy as np
 
-from chainsail_helpers.pdf.stan import BaseStanPDF
+from chainsail_helpers.pdf.stan.httpstan import BaseStanPDF
 
 model_code = """
 parameters {

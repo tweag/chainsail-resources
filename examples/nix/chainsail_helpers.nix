@@ -1,11 +1,15 @@
 { buildPythonPackage, fetchPypi, numpy }:
 buildPythonPackage rec {
   pname = "chainsail-helpers";
-  version = "0.1.5.1";
+  version = "0.2.0.0";
   src = fetchPypi {
     inherit pname version;
-    sha256 = "2e69fa0ed98aa1e4024ac66fb2b212ad81bb0ca71792da029b49f45c73769dcd";
+    sha256 = "TODO after PyPi publishing";
   };
   doCheck = false;
+  # `chainsail-helpers` now also depends on BridgeStan
+  # (https://github.com/roualdes/bridgestan), but that's not
+  # Nix-packaged yet. But you can use everything in `chainsail-helper`
+  # other than the chainsail_helpers.pdf.stan.bridgestan module.
   propagatedBuildInputs = [ numpy ];
 }
